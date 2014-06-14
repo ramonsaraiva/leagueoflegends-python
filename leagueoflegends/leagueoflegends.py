@@ -165,7 +165,7 @@ class LeagueOfLegends:
             else:
                 return
         self.set_api_version('2.4')
-        url = self.api_url + 'league/by-summoner/%s/entry?api_key%s' % (summoner_id, self.api_key)
+        url = self.api_url + 'league/by-summoner/%s/entry?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
