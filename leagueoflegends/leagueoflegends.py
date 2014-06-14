@@ -167,6 +167,11 @@ class LeagueOfLegends:
         self.set_api_version('2.4')
         url = self.api_url + 'league/by-summoner/%s/entry?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
+
+        # Change the dict keys to league type and not league id (RANKED_SOLO_5X5)
+        for key, league in response.items():
+            queue = response[key][0]['queue']
+            response[queue] = response.pop(key)[0]
         return response
 
     def get_summoner_stats(self, summoner_id=None, season=None):
