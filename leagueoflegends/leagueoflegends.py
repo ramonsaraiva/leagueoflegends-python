@@ -205,7 +205,7 @@ class LeagueOfLegends:
         return response
 
     def get_summoner_id_from_name(self, summoner_name):
-        return self.get_summoner_by_name(summoner_name)["id"]
+        return self.get_summoner_by_name(summoner_name)[summoner_name]["id"]
 
     def get_summoner_name_from_id(self, summoner_id):
         return self.get_summoner_by_id(summoner_id)["name"]
