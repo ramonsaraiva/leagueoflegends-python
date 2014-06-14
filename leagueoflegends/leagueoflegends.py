@@ -158,6 +158,17 @@ class LeagueOfLegends:
             remapped_league[response[league]["queue"]] = response[league]
         return remapped_league
 
+    def get_summoner_leagues_entry(self, summoner_id=None):
+        if summoner_id is None:
+            if self.summoner_id is not None:
+                summoner_id = self.summoner_id
+            else:
+                return
+		self.set_api_version('2.4')
+		url = self.api_url + 'league/by-summoner/%s/entry?api_key%s' % (summoner_id, self.api_key)
+		response = json.loads(self.__webrequest(url))
+		return response
+
     def get_summoner_stats(self, summoner_id=None, season=None):
         if summoner_id is None:
             if self.summoner_id is not None:
