@@ -152,6 +152,7 @@ class LeagueOfLegends:
         url = self.api_url + 'league/by-summoner/%s?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         # Return data with more useful keys based on league type
+        return response
         remapped_league = {}
         for league in response:
             remapped_league[response[league]["queue"]] = response[league]
