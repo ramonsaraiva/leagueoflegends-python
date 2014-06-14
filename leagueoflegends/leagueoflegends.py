@@ -126,7 +126,7 @@ class LeagueOfLegends:
 
     def get_champions(self, free_to_play=False):
         # Champion API is version 1.1 only
-        self.set_api_version('1.1')
+        self.set_api_version('1.2')
         url = self.api_url + 'champion?api_key=' + self.api_key + '&freeToPlay=' + str(free_to_play)
         response = json.loads(self.__webrequest(url))
         return response["champions"]
@@ -137,7 +137,7 @@ class LeagueOfLegends:
                 summoner_id = self.summoner_id
             else:
                 return
-        self.set_api_version('1.2')
+        self.set_api_version('1.3')
         url = self.api_url + 'game/by-summoner/%s/recent?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response["games"]
@@ -148,7 +148,7 @@ class LeagueOfLegends:
                 summoner_id = self.summoner_id
             else:
                 return
-        self.set_api_version('2.2')
+        self.set_api_version('2.4')
         url = self.api_url + 'league/by-summoner/%s?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         # Return data with more useful keys based on league type
@@ -163,7 +163,7 @@ class LeagueOfLegends:
                 summoner_id = self.summoner_id
             else:
                 return
-        self.set_api_version('1.2')
+        self.set_api_version('1.3')
         url = self.api_url + 'stats/by-summoner/%s/summary?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         if response["summonerId"] != summoner_id:
@@ -176,7 +176,7 @@ class LeagueOfLegends:
                 summoner_id = self.summoner_id
             else:
                 return
-        self.set_api_version('1.2')
+        self.set_api_version('1.3')
         url = self.api_url + 'stats/by-summoner/%s/ranked?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         if response["summonerId"] != summoner_id:
@@ -199,7 +199,7 @@ class LeagueOfLegends:
     def get_summoner_by_name(self, summoner_name):
         if summoner_name == '':
             return
-        self.set_api_version('1.2')
+        self.set_api_version('1.4')
         url = self.api_url + 'summoner/by-name/%s?api_key=%s' % (summoner_name, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
@@ -216,7 +216,7 @@ class LeagueOfLegends:
                 summoner_id = self.summoner_id
             else:
                 return
-        self.set_api_version('1.2')
+        self.set_api_version('1.4')
         url = self.api_url + 'summoner/%s/masteries?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response["pages"]
@@ -227,7 +227,7 @@ class LeagueOfLegends:
                 summoner_id = self.summoner_id
             else:
                 return
-        self.set_api_version('1.2')
+        self.set_api_version('1.4')
         url = self.api_url + 'summoner/%s/runes?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response["pages"]
@@ -239,7 +239,7 @@ class LeagueOfLegends:
             raise InputError
         if len(summoner_ids) == 0 or summoner_ids is None:
             return
-        self.set_api_version('1.2')
+        self.set_api_version('1.4')
         summoner_ids = [str(x) for x in summoner_ids]
         ids = ",".join(summoner_ids)
         url = self.api_url + 'summoner/%s/name?api_key=%s' % (ids, self.api_key)
@@ -252,7 +252,7 @@ class LeagueOfLegends:
                 summoner_id = self.summoner_id
             else:
                 return
-        self.set_api_version('2.2')
+        self.set_api_version('2.3')
         url = self.api_url + 'team/by-summoner/%s?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
