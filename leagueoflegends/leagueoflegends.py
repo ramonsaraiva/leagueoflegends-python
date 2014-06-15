@@ -222,7 +222,9 @@ class LeagueOfLegends:
         return response
 
     def get_summoner_id_from_name(self, summoner_name):
-        return self.get_summoner_by_name(summoner_name)[summoner_name]["id"]
+        response = self.get_summoner_by_name(summoner_name)
+        summoner_name = response.iterkeys().next()
+        return response[summoner_name]['id']
 
     def get_summoner_name_from_id(self, summoner_id):
         return self.get_summoner_by_id(summoner_id)["name"]
@@ -278,7 +280,7 @@ class LeagueOfLegends:
     # from summoner name. All future API calls will use this
     # ID if there is none passed in.
     def set_summoner(self, summoner_name):
-        summoner_id = self.get_summoner_by_name(summoner_name)[summoner_name]["id"]
+        summoner_id = self.get_summoner_id_from_name(summoner_name)
      #   print summoner_id
         self.summoner_id = summoner_id
 
