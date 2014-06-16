@@ -217,7 +217,6 @@ class LeagueOfLegends:
         if summoner_name == '':
             return
         self.set_api_version('1.4')
-        print summoner_name
         url = self.api_url + 'summoner/by-name/%s?api_key=%s' % (summoner_name.decode('utf-8'), self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
