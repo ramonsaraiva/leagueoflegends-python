@@ -134,6 +134,20 @@ class LeagueOfLegends:
         response = json.loads(self.__webrequest(url))
         return response["champions"]
 
+    def get_static_champions(self):
+        self.set_api_version('1.2')
+        self.set_api_region('na')
+        url = self.API_BASE_URL + self.api_region + self.API_BASE_URL_DOM + '/static-data/{0}/v{1}/champion?api_key={2}'.format(self.api_region, self.api_version, self.api_key)
+        response = json.loads(self.__webrequest(url))
+        return response
+
+    def get_static_spells(self):
+        self.set_api_version('1.2')
+        self.set_api_region('na')
+        url = self.API_BASE_URL + self.api_region + self.API_BASE_URL_DOM + '/static-data/{0}/v{1}/summoner-spell?locale=en_US&api_key={2}'.format(self.api_region, self.api_version, self.api_key)
+        response = json.loads(self.__webrequest(url))
+        return response
+
     def get_summoner_games(self, summoner_id=None):
         if summoner_id is None:
             if self.summoner_id is not None:
@@ -221,7 +235,6 @@ class LeagueOfLegends:
             return
         self.set_api_version('1.4')
         url = self.api_url + 'summoner/by-name/%s?api_key=%s' % (summoner_name, self.api_key)
-        print url
         response = json.loads(self.__webrequest(url))
         return response
 
