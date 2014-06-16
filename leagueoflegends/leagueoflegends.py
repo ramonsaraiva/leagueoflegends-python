@@ -30,6 +30,7 @@ class LeagueOfLegends:
     def __init__(self, api_key, cache={}):
         self.api_key = api_key
         self.__cache = cache
+        self.summoner_id = None
 
     def __webrequest(self, url):
         # print 'Making request to: ' + url
