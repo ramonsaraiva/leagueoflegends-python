@@ -22,10 +22,12 @@ import re
 
 class LeagueOfLegends:
 
-    API_BASE_URL = 'https://prod.api.pvp.net/api/lol'
+    API_BASE_URL = 'https://'
+    API_BASE_URL_DOM = '.api.pvp.net/api/lol'
+
     api_version = '1.2'
     api_region = 'na'
-    api_url = API_BASE_URL + '/' + api_region + '/' + 'v' + api_version + '/'
+    api_url = API_BASE_URL + api_region + API_BASE_URL_DOM + '/' + api_region + '/' + 'v' + api_version + '/'
 
     def __init__(self, api_key, cache={}):
         self.api_key = api_key
@@ -105,7 +107,7 @@ class LeagueOfLegends:
             return self.api_url
 
     def update_api_url(self):
-        self.api_url = self.API_BASE_URL + '/' + self.api_region + '/' + 'v' + self.api_version + '/'
+        self.api_url = self.API_BASE_URL + self.api_region + self.API_BASE_URL_DOM + '/' + self.api_region + '/' + 'v' + self.api_version + '/'
       #  print self.api_url
 
     def __getjsondata(self, namespace, query=''):
@@ -218,7 +220,8 @@ class LeagueOfLegends:
         if summoner_name == '':
             return
         self.set_api_version('1.4')
-        url = self.api_url + 'summoner/by-name/%s?api_key=%s' % (summoner_name.decode('utf-8'), self.api_key)
+        url = self.api_url + 'summoner/by-name/%s?api_key=%s' % (summoner_name, self.api_key)
+        print url
         response = json.loads(self.__webrequest(url))
         return response
 
