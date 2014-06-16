@@ -90,7 +90,7 @@ class LeagueOfLegends:
 
     def set_api_region(self, region):
         if region is not None:
-            if region.lower() in ['na', 'euw', 'eune', 'br', 'tr']:
+            if region.lower() in ['na', 'euw', 'eune', 'br', 'tr', 'kr']:
                 self.api_region = region.lower()
                 self.update_api_url()
                 return self.api_url
